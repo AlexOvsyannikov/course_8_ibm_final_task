@@ -18,3 +18,4 @@ class TestEnglishToFrench(unittest.TestCase):
         self.assertEqual(english_to_french('Hello'), 'Bonjour')
 
 
+unittest.main()
