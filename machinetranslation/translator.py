@@ -1,3 +1,5 @@
+"""Module for translating text with Yandex tranlslate"""
+
 import os
 
 import requests
@@ -62,4 +64,3 @@ def french_to_english(french_text: str):
     translator = Translator(API_KEY, URL)
     english_text = translator.translate_from_french_to_english(french_text)
     return english_text
-
