@@ -3,7 +3,7 @@ import os
 import requests
 from dotenv import load_dotenv
 load_dotenv()
-API_KEY = os.environ['api_key']
+API_KEY = os.environ['apikey']
 URL = os.environ['url']
 
 
@@ -18,6 +18,7 @@ class Translator:
         }
 
     def translate_from_english_to_french(self, text):
+        """Translates text from english to french using external api"""
         body = {
             "sourceLanguageCode": 'en',
             "targetLanguageCode": 'fr',
@@ -31,6 +32,7 @@ class Translator:
         return response.json().get('translations', [])[0].get('text', '')
 
     def translate_from_french_to_english(self, text):
+        """Translates text from french to english using external api"""
         body = {
             "sourceLanguageCode": 'fr',
             "targetLanguageCode": 'en',
@@ -46,6 +48,8 @@ class Translator:
 
 def english_to_french(english_text: str):
     """Translates text from english to french using Translator class"""
+    if not english_text:
+        return ''
     translator = Translator(API_KEY, URL)
     french_text = translator.translate_from_english_to_french(english_text)
     return french_text
@@ -53,6 +57,8 @@ def english_to_french(english_text: str):
 
 def french_to_english(french_text: str):
     """Translates text from french to english using Translator class"""
+    if not french_text:
+        return ''
     translator = Translator(API_KEY, URL)
     english_text = translator.translate_from_french_to_english(french_text)
     return english_text
